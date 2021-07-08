@@ -14,6 +14,8 @@ class BlinkText extends HTMLElement {
 
     // Use this to manage the opacity
     this._opacity = 1
+    this._min = 0
+    this._max = 1
   }
 
 
@@ -34,6 +36,12 @@ class BlinkText extends HTMLElement {
       this._time = parseInt(newValue) // set the time
       this._clearTimer()  // clear any old Timers
       this._addTimer() // add a new timer
+    } 
+    if (name === 'min') {
+      this._min = newValue || 0
+    } 
+    if (name === 'max') {
+      this._max = newValue || 1
     }
   }
 
@@ -55,9 +63,9 @@ class BlinkText extends HTMLElement {
       this._opacity = this._opacity === 1 ? 0 : 1
       // Use the min and max properties here
       if (this._opacity === 1) {
-        this._blinkEl.style.opacity = 1
+        this._blinkEl.style.opacity = this._max
       } else {
-        this._blinkEl.style.opacity = 0
+        this._blinkEl.style.opacity = this._min
       }
     }, this._time);
   }

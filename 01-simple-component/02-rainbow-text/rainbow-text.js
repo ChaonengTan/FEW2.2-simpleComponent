@@ -2,24 +2,20 @@
 class rainbowText extends HTMLElement {
   constructor() {
     super();
+      this._shadowRoot = this.attachShadow({ mode: 'open' })
+      this._text = document.createElement('div')
+      this._shadowRoot.appendChild(this._text)
 
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    
-    // Get the text of the host element this.innerHTML
+      const words = this.innerHTML.split(' ')
+      words.forEach(word => {
+        const newSpan = document.createElement('span')
+        newSpan.innerHTML = word
 
-    // Split the string into an array of words text.split(' ')
-
-    // Loop over each word in the array
-
-      // Make a span 
-
-      // Set the innerHTML of the span to the current word 
-
-      // Set the color of the span: span.style.color
-
-      // Append the word to the shadowroot
-
-    
+        const hue = Math.random() * 360
+        const color = `hsl(${hue}, 100%, 50%)`
+        newSpan.style.color = color
+        this.shadowRoot.appendChild(newSpan)
+      })
   }
 }
 

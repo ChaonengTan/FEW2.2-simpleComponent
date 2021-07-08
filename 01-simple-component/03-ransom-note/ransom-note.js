@@ -3,14 +3,25 @@
 class RansomNote extends HTMLElement {
   constructor() {
     super(); 
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._text = document.createElement('div')
+    this._shadowRoot.appendChild(this._text)
     
     // Get the text of the host element this.innerHTML
-
+    const text = this.innerHTML.split(' ')
     // Split the string into an array of words text.split(' ')
-
     // Loop over each word in the array
+    text.forEach(word => {
+      const newSpan = document.createElement('span')
+      newSpan.innerHTML = word
 
+      const hue = Math.random() * 360
+      const color = `hsl(${hue}, 100%, 50%)`
+      newSpan.style.color = color
+      newSpan.style.fontSize = `${Math.random() * 20 + 12}px`
+      newSpan.style.transform = `rotate(${Math.random() * 40 - 20}deg)`
+      this.shadowRoot.appendChild(newSpan)
+    })
       // Make a span 
 
       // Set the innerHTML of the span to the current word 
