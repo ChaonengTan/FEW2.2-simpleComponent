@@ -44,6 +44,7 @@ class SimpleSlides extends HTMLElement {
     this._container.style.height = `${this.height}px`
     this._container.style.border = 'black 2px solid'
     this._container.style.overflow = 'hidden'
+    this.shadowRoot.appendChild(this._container)
     
 
     
